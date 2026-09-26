@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">LibreriaModerna</string>
+    <!-- Error messages -->
+    <string name="error_no_connection">Sin conexión a internet. Revisá tu red e intentá de nuevo.</string>
+    <string name="error_timeout">El servidor tardó demasiado en responder.</string>
+    <string name="error_http">Error del servidor. Intentá más tarde.</string>
+    <string name="error_unknown">Ocurrió un error inesperado.</string>
 </resources>
