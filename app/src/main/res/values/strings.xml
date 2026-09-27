@@ -15,4 +15,16 @@
     <string name="unknown_year">Año desconocido</string>
     <string name="first_published">Publicado en %1$d</string>
     <string name="book_cover_description">Portada del libro</string>
+    <!-- Detail screen -->
+    <string name="detail_title">Detalle del libro</string>
+    <string name="navigate_back">Volver</string>
+    <string name="detail_pages">Páginas: %1$d</string>
+    <string name="detail_pages_unknown">Páginas: sin datos</string>
+    <string name="detail_publishers_label">Editoriales</string>
+    <string name="detail_subjects_label">Temas</string>
+    <string name="detail_description_label">Descripción</string>
+    <string name="detail_no_data">Sin datos</string>
+    <string name="detail_no_description">Este libro no tiene una descripción disponible.</string>
+    <string name="detail_open_link">Ver en Open Library</string>
+    <string name="error_no_browser">No se encontró un navegador para abrir el enlace.</string>
 </resources>

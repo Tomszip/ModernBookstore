@@ -1,7 +1,6 @@
 package com.example.libreriamoderna.ui.search
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.libreriamoderna.data.model.Book
 import com.example.libreriamoderna.databinding.ActivityMainBinding
+import com.example.libreriamoderna.ui.detail.DetailActivity
 import com.example.libreriamoderna.util.UiState
 
 /**
@@ -79,8 +79,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /** Opens the detail screen passing only the book id. */
     private fun onBookClicked(book: Book) {
-        // TODO Step 6: open DetailActivity
-        Toast.makeText(this, book.title, Toast.LENGTH_SHORT).show()
+        val workId = book.workId ?: return
+        startActivity(DetailActivity.createIntent(this, workId))
     }
 }
