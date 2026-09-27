@@ -1,9 +1,9 @@
-# 📚 Librería Moderna
+#  Librería Moderna
 
 Aplicación Android para buscar libros por título o autor usando la **Open Library Search API**.
 Desarrollada en **Kotlin** con arquitectura **MVVM** y una capa **Repository**.
 
-> 🎥 **Video demostrativo:** [Ver acá](https://drive.google.com/file/d/1I6wANYLwEpHD22JMZRM2h9a4Ax0U6Obp/view?usp=sharing)
+>  **Video demostrativo:** [Ver acá](https://drive.google.com/file/d/1I6wANYLwEpHD22JMZRM2h9a4Ax0U6Obp/view?usp=sharing)
 
 ---
 
@@ -19,13 +19,13 @@ Desarrollada en **Kotlin** con arquitectura **MVVM** y una capa **Repository**.
 
 ## Funcionalidades
 
-- 🔍 **Búsqueda** de libros por título o autor.
-- 📋 **Lista de resultados** (RecyclerView) con portada, título, autores y año de primera publicación.
-- 📖 **Detalle del libro** (Fragment) con portada grande, cantidad de páginas, editoriales, temas (subjects), descripción y enlace a Open Library.
-- ⏳ **Indicador de carga** con ProgressBar.
-- ⚠️ **Manejo de errores**: sin conexión a internet, tiempo de espera agotado, errores HTTP y búsquedas sin resultados.
-- 🔄 **Soporta la rotación de pantalla** sin perder los datos ni repetir peticiones.
-- 🌙 **Tema claro y oscuro** con una paleta propia de Material 3.
+-  **Búsqueda** de libros por título o autor.
+-  **Lista de resultados** (RecyclerView) con portada, título, autores y año de primera publicación.
+-  **Detalle del libro** (Fragment) con portada grande, cantidad de páginas, editoriales, temas (subjects), descripción y enlace a Open Library.
+-  **Indicador de carga** con ProgressBar.
+-  **Manejo de errores**: sin conexión a internet, tiempo de espera agotado, errores HTTP y búsquedas sin resultados.
+-  **Soporta la rotación de pantalla** sin perder los datos ni repetir peticiones.
+-  **Tema claro y oscuro** con una paleta propia de Material 3.
 
 ---
 
@@ -48,7 +48,7 @@ Desarrollada en **Kotlin** con arquitectura **MVVM** y una capa **Repository**.
 
 ### Diagrama
 
-> 🧭 **[Abrir el diagrama interactivo](https://raw.githack.com/Tomszip/ModernBookstore/main/docs/architecture/architecture.html)**
+>  **[Abrir el diagrama interactivo](https://raw.githack.com/Tomszip/ModernBookstore/main/docs/architecture/architecture.html)**
 
 [![Diagrama de arquitectura](docs/architecture/architecture.png)](https://raw.githack.com/Tomszip/ModernBookstore/main/docs/architecture/architecture.html)
 
