@@ -1,0 +1,611 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Librería Moderna · Arquitectura MVVM + Repository",
+    "output": "libreria-moderna-arquitectura.html",
+    "quality_profile": "standard",
+    "viewBox": [
+      1370,
+      775
+    ],
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "frontend": {
+          "label": "Vista (Activities, Fragment, Adapter)"
+        },
+        "backend": {
+          "label": "Lógica (ViewModel y Repository)"
+        },
+        "cloud": {
+          "label": "Red (Retrofit)"
+        },
+        "external": {
+          "label": "API externa"
+        },
+        "database": {
+          "label": "Modelos de datos"
+        },
+        "messagebus": {
+          "label": "Utilidades (estado y errores)"
+        }
+      }
+    },
+    "views": [
+      {
+        "id": "flujo-busqueda",
+        "label": "1. Flujo de búsqueda",
+        "focus": [
+          "mainActivity",
+          "searchViewModel",
+          "bookRepository",
+          "openLibraryApi",
+          "retrofitClient",
+          "openLibrary",
+          "bookAdapter"
+        ],
+        "note": "El usuario busca: MainActivity → SearchViewModel → BookRepository → Retrofit → API; la lista vuelve y BookAdapter la dibuja."
+      },
+      {
+        "id": "flujo-detalle",
+        "label": "2. Flujo de detalle",
+        "focus": [
+          "mainActivity",
+          "detailActivity",
+          "bookDetailFragment",
+          "bookDetailViewModel",
+          "bookRepository",
+          "bookDetail"
+        ],
+        "note": "Al tocar un libro, el workId viaja por Intent a DetailActivity y por arguments al Fragment, que pide el detalle."
+      },
+      {
+        "id": "capa-datos",
+        "label": "3. Capa de datos",
+        "focus": [
+          "bookRepository",
+          "openLibraryApi",
+          "retrofitClient",
+          "openLibrary",
+          "book",
+          "searchResponse",
+          "workDetail",
+          "bookDetail"
+        ],
+        "note": "El Repository es la única puerta a los datos: llama a la API, Gson convierte el JSON y se arma el BookDetail."
+      },
+      {
+        "id": "manejo-errores",
+        "label": "4. Estados y errores",
+        "focus": [
+          "searchViewModel",
+          "bookDetailViewModel",
+          "uiState",
+          "errorMapper",
+          "bookRepository"
+        ],
+        "note": "safeApiCall devuelve un Result; el ViewModel traduce el error con ErrorMapper y emite Loading, Success o Error."
+      }
+    ],
+    "repository": {
+      "url": "https://github.com/Tomszip/ModernBookstore",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "5ebbd15b9b7739022e40664d2f2ee0237b66b93f"
+    }
+  },
+  "components": [
+    {
+      "id": "mainActivity",
+      "type": "frontend",
+      "label": "MainActivity",
+      "sublabel": "pantalla de búsqueda",
+      "pos": [
+        80,
+        60
+      ],
+      "size": [
+        180,
+        70
+      ],
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/ui/search/MainActivity.kt"
+        }
+      ]
+    },
+    {
+      "id": "bookAdapter",
+      "type": "frontend",
+      "label": "BookAdapter",
+      "sublabel": "llena la lista + ViewHolder",
+      "pos": [
+        80,
+        190
+      ],
+      "size": [
+        180,
+        70
+      ],
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/ui/search/BookAdapter.kt"
+        }
+      ]
+    },
+    {
+      "id": "detailActivity",
+      "type": "frontend",
+      "label": "DetailActivity",
+      "sublabel": "contenedor del Fragment",
+      "pos": [
+        80,
+        320
+      ],
+      "size": [
+        180,
+        70
+      ],
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/ui/detail/DetailActivity.kt"
+        }
+      ]
+    },
+    {
+      "id": "bookDetailFragment",
+      "type": "frontend",
+      "label": "BookDetailFragment",
+      "sublabel": "muestra el detalle",
+      "pos": [
+        80,
+        450
+      ],
+      "size": [
+        180,
+        70
+      ],
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/ui/detail/BookDetailFragment.kt"
+        }
+      ]
+    },
+    {
+      "id": "searchViewModel",
+      "type": "backend",
+      "label": "SearchViewModel",
+      "sublabel": "estado de la búsqueda",
+      "pos": [
+        340,
+        60
+      ],
+      "size": [
+        180,
+        70
+      ],
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/ui/search/SearchViewModel.kt"
+        }
+      ]
+    },
+    {
+      "id": "bookDetailViewModel",
+      "type": "backend",
+      "label": "BookDetailViewModel",
+      "sublabel": "estado del detalle",
+      "pos": [
+        340,
+        450
+      ],
+      "size": [
+        180,
+        70
+      ],
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/ui/detail/BookDetailViewModel.kt"
+        }
+      ]
+    },
+    {
+      "id": "bookRepository",
+      "type": "backend",
+      "label": "BookRepository",
+      "sublabel": "única puerta a los datos",
+      "pos": [
+        600,
+        255
+      ],
+      "size": [
+        180,
+        70
+      ],
+      "tag": "safeApiCall → Result",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/data/repository/BookRepository.kt"
+        }
+      ]
+    },
+    {
+      "id": "openLibraryApi",
+      "type": "cloud",
+      "label": "OpenLibraryApi",
+      "sublabel": "define los endpoints",
+      "pos": [
+        860,
+        190
+      ],
+      "size": [
+        180,
+        70
+      ],
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/data/remote/OpenLibraryApi.kt"
+        }
+      ]
+    },
+    {
+      "id": "retrofitClient",
+      "type": "cloud",
+      "label": "RetrofitClient",
+      "sublabel": "Singleton de Retrofit",
+      "pos": [
+        860,
+        320
+      ],
+      "size": [
+        180,
+        70
+      ],
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/data/remote/RetrofitClient.kt"
+        }
+      ]
+    },
+    {
+      "id": "openLibrary",
+      "type": "external",
+      "label": "Open Library API",
+      "sublabel": "openlibrary.org",
+      "pos": [
+        1120,
+        320
+      ],
+      "size": [
+        180,
+        70
+      ]
+    },
+    {
+      "id": "uiState",
+      "type": "messagebus",
+      "label": "UiState",
+      "sublabel": "Loading / Success / Error",
+      "pos": [
+        80,
+        610
+      ],
+      "size": [
+        180,
+        70
+      ],
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/util/UiState.kt"
+        }
+      ]
+    },
+    {
+      "id": "errorMapper",
+      "type": "messagebus",
+      "label": "ErrorMapper",
+      "sublabel": "excepción → mensaje",
+      "pos": [
+        320,
+        610
+      ],
+      "size": [
+        180,
+        70
+      ],
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/util/ErrorMapper.kt"
+        }
+      ]
+    },
+    {
+      "id": "bookDetail",
+      "type": "database",
+      "label": "BookDetail",
+      "sublabel": "modelo de la pantalla",
+      "pos": [
+        590,
+        610
+      ],
+      "size": [
+        175,
+        70
+      ],
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/data/model/BookDetail.kt"
+        }
+      ]
+    },
+    {
+      "id": "book",
+      "type": "database",
+      "label": "Book",
+      "sublabel": "un libro buscado",
+      "pos": [
+        780,
+        610
+      ],
+      "size": [
+        175,
+        70
+      ],
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/data/model/Book.kt"
+        }
+      ]
+    },
+    {
+      "id": "searchResponse",
+      "type": "database",
+      "label": "SearchResponse",
+      "sublabel": "envoltorio de la búsqueda",
+      "pos": [
+        970,
+        610
+      ],
+      "size": [
+        175,
+        70
+      ],
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/data/model/SearchResponse.kt"
+        }
+      ]
+    },
+    {
+      "id": "workDetail",
+      "type": "database",
+      "label": "WorkDetail",
+      "sublabel": "descripción y temas",
+      "pos": [
+        1160,
+        610
+      ],
+      "size": [
+        175,
+        70
+      ],
+      "sources": [
+        {
+          "path": "app/src/main/java/com/example/libreriamoderna/data/model/WorkDetail.kt"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "ui · Vista",
+      "wraps": [
+        "mainActivity",
+        "bookAdapter",
+        "detailActivity",
+        "bookDetailFragment"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "ui · ViewModel",
+      "wraps": [
+        "searchViewModel",
+        "bookDetailViewModel"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "data.repository",
+      "wraps": [
+        "bookRepository"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "data.remote",
+      "wraps": [
+        "openLibraryApi",
+        "retrofitClient"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "util",
+      "wraps": [
+        "uiState",
+        "errorMapper"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "data.model",
+      "wraps": [
+        "bookDetail",
+        "book",
+        "searchResponse",
+        "workDetail"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "buscar",
+      "from": "mainActivity",
+      "to": "searchViewModel",
+      "label": "searchBooks()",
+      "variant": "emphasis"
+    },
+    {
+      "id": "llenar-lista",
+      "from": "mainActivity",
+      "to": "bookAdapter",
+      "label": "submitList()",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        170,
+        160
+      ]
+    },
+    {
+      "id": "abrir-detalle",
+      "from": "mainActivity",
+      "to": "detailActivity",
+      "label": "Intent(workId)",
+      "variant": "emphasis",
+      "fromSide": "left",
+      "toSide": "left",
+      "via": [
+        [
+          52,
+          95
+        ],
+        [
+          52,
+          355
+        ]
+      ],
+      "labelAt": [
+        100,
+        290
+      ]
+    },
+    {
+      "id": "pasar-argumentos",
+      "from": "detailActivity",
+      "to": "bookDetailFragment",
+      "label": "arguments",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        170,
+        420
+      ]
+    },
+    {
+      "id": "cargar-detalle",
+      "from": "bookDetailFragment",
+      "to": "bookDetailViewModel",
+      "label": "loadBookDetail()",
+      "labelAt": [
+        300,
+        440
+      ]
+    },
+    {
+      "id": "vm-busqueda-repo",
+      "from": "searchViewModel",
+      "to": "bookRepository",
+      "label": "searchBooks()"
+    },
+    {
+      "id": "vm-detalle-repo",
+      "from": "bookDetailViewModel",
+      "to": "bookRepository",
+      "label": "getBookDetail()"
+    },
+    {
+      "id": "repo-api",
+      "from": "bookRepository",
+      "to": "openLibraryApi",
+      "label": "suspend"
+    },
+    {
+      "id": "api-retrofit",
+      "from": "openLibraryApi",
+      "to": "retrofitClient",
+      "label": "create()",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        950,
+        290
+      ]
+    },
+    {
+      "id": "retrofit-http",
+      "from": "retrofitClient",
+      "to": "openLibrary",
+      "label": "HTTPS GET",
+      "variant": "emphasis"
+    },
+    {
+      "id": "gson",
+      "from": "retrofitClient",
+      "to": "searchResponse",
+      "label": "Gson: JSON → objetos",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "armar-detalle",
+      "from": "bookRepository",
+      "to": "bookDetail",
+      "label": "arma",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "traducir-error",
+      "from": "bookDetailViewModel",
+      "to": "errorMapper",
+      "label": "toErrorMessage()",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Vista (ui)",
+      "items": [
+        "Activities y Fragment solo dibujan el UiState",
+        "workId viaja por Intent y luego por arguments"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "ViewModel + Repository",
+      "items": [
+        "ViewModel: corrutinas + LiveData, sobrevive a rotar",
+        "Repository: única puerta a los datos → Result"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Datos y errores",
+      "items": [
+        "Retrofit + Gson: JSON → data classes",
+        "ErrorMapper: sin red, timeout o HTTP → mensaje"
+      ]
+    }
+  ]
+}
