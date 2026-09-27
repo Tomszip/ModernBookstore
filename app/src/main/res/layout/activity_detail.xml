@@ -15,7 +15,9 @@
         android:layout_height="?attr/actionBarSize"
         app:navigationContentDescription="@string/navigate_back"
         app:navigationIcon="?attr/homeAsUpIndicator"
-        app:title="@string/detail_title" />
+        app:navigationIconTint="?attr/colorPrimary"
+        app:title="@string/detail_title"
+        app:titleTextColor="?attr/colorPrimary" />
 
     <!-- The fragment is added here from DetailActivity -->
     <androidx.fragment.app.FragmentContainerView

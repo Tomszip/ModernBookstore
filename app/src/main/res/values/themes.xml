@@ -1,9 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme (light mode) -->
     <style name="Base.Theme.LibreriaModerna" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/brown_primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/brown_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/brown_on_primary_container</item>
+        <item name="colorSecondary">@color/brown_secondary</item>
+        <item name="android:colorBackground">@color/cream_background</item>
+        <item name="colorSurface">@color/cream_background</item>
     </style>
 
     <style name="Theme.LibreriaModerna" parent="Base.Theme.LibreriaModerna" />
+
+    <!-- Rounded corners for the book covers (used by ShapeableImageView) -->
+    <style name="ShapeAppearance.LibreriaModerna.Cover" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
 </resources>

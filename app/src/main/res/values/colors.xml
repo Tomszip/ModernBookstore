@@ -2,4 +2,19 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- App palette (light): warm "old library" tones -->
+    <color name="brown_primary">#7B4A2D</color>
+    <color name="brown_primary_container">#FFDBC8</color>
+    <color name="brown_on_primary_container">#2E1500</color>
+    <color name="brown_secondary">#765848</color>
+    <color name="cream_background">#FFF8F5</color>
+
+    <!-- App palette (dark) -->
+    <color name="brown_primary_dark">#FFB68E</color>
+    <color name="brown_on_primary_dark">#4A2200</color>
+    <color name="brown_primary_container_dark">#633E26</color>
+
+    <!-- Shown while a cover is loading or when the book has no cover -->
+    <color name="cover_placeholder">#E8D6CC</color>
 </resources>

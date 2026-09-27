@@ -1,7 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme (dark mode) -->
     <style name="Base.Theme.LibreriaModerna" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/brown_primary_dark</item>
+        <item name="colorOnPrimary">@color/brown_on_primary_dark</item>
+        <item name="colorPrimaryContainer">@color/brown_primary_container_dark</item>
+        <item name="colorOnPrimaryContainer">@color/brown_primary_container</item>
     </style>
 </resources>
