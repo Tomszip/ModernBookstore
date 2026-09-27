@@ -15,5 +15,5 @@ sealed class UiState<out T> {
     data class Success<out T>(val data: T) : UiState<T>()
 
     /** Request failed: the View shows the error message. */
-    data class Error(@StringRes val messageRes: Int) : UiState<Nothing>()
+    data class Error(@param:StringRes val messageRes: Int) : UiState<Nothing>()
 }
