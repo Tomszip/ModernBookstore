@@ -48,10 +48,12 @@ Desarrollada en **Kotlin** con arquitectura **MVVM** y una capa **Repository**.
 
 ### Diagrama
 
-![Diagrama de arquitectura](docs/architecture/architecture.png)
+> 🧭 **[Abrir el diagrama interactivo](https://raw.githack.com/Tomszip/ModernBookstore/main/docs/architecture/architecture.html)**
+
+[![Diagrama de arquitectura](docs/architecture/architecture.png)](https://raw.githack.com/Tomszip/ModernBookstore/main/docs/architecture/architecture.html)
 
 Cada caja es un archivo del proyecto y cada flecha es una llamada real entre ellos.
-Hay una **versión interactiva** en [`docs/architecture/architecture.html`](docs/architecture/architecture.html), generada con [Archify](https://github.com/tt-a1i/archify). Para verla, descargá el archivo y abrilo en el navegador. Incluye recorridos guiados por el flujo de búsqueda, el de detalle, la capa de datos y el manejo de errores, y cada caja enlaza a su archivo en este repositorio.
+La versión interactiva, generada con [Archify](https://github.com/tt-a1i/archify), incluye recorridos guiados (flujo de búsqueda, flujo de detalle, capa de datos y manejo de errores), zoom, búsqueda y tema claro/oscuro. Cada caja enlaza a su archivo en este repositorio. El archivo fuente está en [`docs/architecture/architecture.html`](docs/architecture/architecture.html).
 
 ### Capas
 
